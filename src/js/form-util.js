@@ -113,7 +113,7 @@ export function prepareInputs (formInputs, reasonInputs, reasonFieldset, reasonA
 
   $('#generate-btn').addEventListener('click', async (event) => {
     event.preventDefault()
-
+    /*
     const reasons = getReasons(reasonInputs)
     if (!reasons) {
       reasonFieldset.classList.add('fieldset-error')
@@ -128,7 +128,7 @@ export function prepareInputs (formInputs, reasonInputs, reasonFieldset, reasonA
     }
 
     console.log(getProfile(formInputs), reasons)
-
+    */
     const pdfBlob = await generatePdf(getProfile(formInputs), reasons, pdfBase)
 
     const creationInstant = new Date()

@@ -1,5 +1,9 @@
 import { generateQR } from './util'
 import { PDFDocument, StandardFonts } from 'pdf-lib'
+import { $, $$, downloadBlob } from './dom-utils'
+import { addSlash, getFormattedDate } from './util'
+import pdfBase from '../certificate.pdf'
+
 
 const ys = {
   travail: 578,
@@ -19,6 +23,7 @@ export async function generatePdf (profile, reasons, pdfBase) {
   const creationHour = creationInstant
     .toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
     .replace(':', 'h')
+      
 
   const {
     lastname,
@@ -124,8 +129,16 @@ export async function generatePdf (profile, reasons, pdfBase) {
   })
 
   const pdfBytes = await pdfDoc.save()
+  
+  console.log("PDF")
 
-  return new Blob([pdfBytes], { type: 'application/pdf' })
+  const creationInstantO = new Date()
+  const creationDateO = creationInstantO.toLocaleDateString('fr-CA')
+  const creationHourO = creationInstantO.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }).replace(':', '-')
+
+  console.log("tggggutu")
+  console.log(creationHourO)
+  downloadBlob( new Blob([pdfBytes], { type: 'application/pdf' }), `attestation-stime-${profile.heuresortie}_${creationDateO}_${creationHourO}.pdf`)
 }
 
 function getIdealFontSize (font, text, maxWidth, minSize, defaultSize) {
