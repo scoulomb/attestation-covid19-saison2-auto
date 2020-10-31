@@ -1,5 +1,6 @@
 # Générateur de certificat de déplacement
-
+idea expose generator via NAT
+And downlaod attestation on phone
 ## Développer
 
 ### Installer le projet
