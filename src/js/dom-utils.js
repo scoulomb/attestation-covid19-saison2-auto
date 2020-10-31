@@ -25,14 +25,6 @@ export const createElement = (tag, attrs) => {
   return el
 }
 
-export const appendTo = el => domNodes => {
-  if (domNodes[Symbol.iterator]) {
-    el.append(...domNodes)
-    return
-  }
-  el.append(domNodes)
-}
-
 export function downloadBlob (blob, fileName) {
   const link = createElement('a')
   const url = URL.createObjectURL(blob)
