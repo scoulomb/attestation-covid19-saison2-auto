@@ -2,15 +2,16 @@ import { generatePdf } from './pdf-util'
 import pdfBase from '../certificate.pdf'
 
 console.log("Main")
-var valid_link = "http://localhost:1234/?address=15 rue d\'Antibes&birthday=20/03/1882&city=Antibes&firstname=Rene&minutesoffset=60&lastname=Coty&placeofbirth=Le Havre&zipcode=06600&reason=sport_animaux" 
+var valid_link = "https://cov19.coulombel.site/?address=15 rue d\'Antibes&birthday=20/03/1882&city=Antibes&firstname=Rene&minutesoffset=60&lastname=Coty&placeofbirth=Le Havre&zipcode=06600&reason=sport_animaux" 
 
 // https://stackoverflow.com/questions/18239430/cannot-set-property-innerhtml-of-null
 // https://stackoverflow.com/questions/37951999/error-message-innerhtml-is-not-a-function
-var status = document.getElementById('status');
-status.innerHTML = '<p>Started</p>';
-var errors = document.getElementById('errors');
-var help = document.getElementById('help');
-help.innerHTML = "<p> <a href=\"" + valid_link + "\"> Example of valid usage </a></p>"
+var status = document.getElementById('status')
+status.innerHTML = '<p>Started</p>'
+var errors = document.getElementById('errors')
+var help = document.getElementById('help')
+help.innerHTML = "<p> Example of another valid usage to copy/past in your browser <br> <p> <a href=\"" + valid_link + "\">" + valid_link + "</a><br><br> and adapt with your profile</p>"
+var userdata = document.getElementById('userdata') // cal element profile is not working so call it userdata
 
 // https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
 function getParameterByName(name, url = window.location.href) {
@@ -116,7 +117,8 @@ function process() {
   /// Generate pdf
   generatePdf(profile, inputMap.get("reason"), pdfBase)
   // set downloadBlob in generatePdf otheriwse issue with async, it download before generation ended
-  status.innerHTML = '<p>Certificate generation completed with profile:</p>' + '<p>' + JSON.stringify(profile)  + '<p>';
+  status.innerHTML = '<p>Certificate generation completed</p>'
+  userdata.innerHTML = '<p>Profile used for generation was:' + JSON.stringify(profile)  + '<p>'
 
 }
 
