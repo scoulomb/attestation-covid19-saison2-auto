@@ -2,7 +2,7 @@ import { generatePdf } from './pdf-util'
 import pdfBase from '../certificate.pdf'
 
 console.log("Main")
-var valid_link = "https://cov19.coulombel.site/?address=15 rue d\'Antibes&birthday=20/03/1882&city=Antibes&firstname=Rene&minutesoffset=60&lastname=Coty&placeofbirth=Le Havre&zipcode=06600&reason=sport_animaux" 
+var valid_link = "https://covid19.coulombel.site/?address=15 rue d\'Antibes&birthday=20/03/1882&city=Antibes&firstname=Rene&minutesoffset=5&lastname=Coty&placeofbirth=Le Havre&zipcode=06600&reason=sport_animaux" 
 
 // https://stackoverflow.com/questions/18239430/cannot-set-property-innerhtml-of-null
 // https://stackoverflow.com/questions/37951999/error-message-innerhtml-is-not-a-function
@@ -10,7 +10,7 @@ var status = document.getElementById('status')
 status.innerHTML = '<p>Started</p>'
 var errors = document.getElementById('errors')
 var help = document.getElementById('help')
-help.innerHTML = "<p> Example of another valid usage to copy/past in your browser <br> <p> <a href=\"" + valid_link + "\">" + valid_link + "</a><br><br> and adapt with your profile</p>"
+help.innerHTML = "<p>Another example of valid usage to copy/past in your browser <br> <p> <a href=\"" + valid_link + "\">" + valid_link + "</a><br><br> and adapt with your profile. See <a href=\"https://github.com/scoulomb/attestation-covid19-saison2-auto/blob/main/README.md\">Specification</a> for more details </p>"
 var userdata = document.getElementById('userdata') // cal element profile is not working so call it userdata
 
 // https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
