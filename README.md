@@ -9,8 +9,7 @@ Ce projet permet de générer une attestation de déplacement en "1-click" pour 
 En effet la version numérique du gouvernement (https://media.interieur.gouv.fr/deplacement-covid-19/) nécessite
 - Plus d'un click pour générer une attestation
 - Force a re-renter les informations a chaque utilisation sur certains navigateurs (see [autocomplete](https://gist.github.com/niksumeiko/360164708c3b326bd1c8) set to [false](https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020/blob/a2566e82555c56442dbdc6857c21f0e4c8c5dc39/src/js/form.js#L22)),
-- Presente des anomalies sur dispositif mobile pour télécharger #attestations > 1 par jour (achats + sports) sur dispositif mobile
-
+<!-- Presente des anomalies sur dispositif mobile pour télécharger #attestations > 1 par jour (achats + sports) sur dispositif mobile -->
 Ce projet a été élabore en partant de la base de code de la version numérique du gouvernement dont la version est disponible sur Github ici:
 https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020
 
@@ -34,13 +33,14 @@ generera une attestation avec pour
 - placeofbirth=Le Havre: votre lieu de naissaince
 - zipcode=06600: votre code postale
 - reason=sport_animaux: la raison de votre sortie
-Les raisons valides sont: travail, achats, santé, famille, handicap, sport animaux, convocation, missions, enfants
+Les raisons valides sont: travail, achats, sante, famille, handicap, sport animaux, convocation, missions, enfants
 
 Appreciez votre sortie, sortez couvert et respectez les gestes barrières !
 
 En général deux bookmarks suffisent car seule la raison change.
 
-Je recommende d'utiliser Firefox qui permet de changer facilement l'URL sur Android ou chrome avec le widget favoris sur la page d'accueil.   
+Je recommende d'utiliser sur Android Firefox qui permet de changer facilement l'URL et d'exporter un lien en application.
+<!-- chrome a aussi le widget favoris -->   
 
 ## Développer
 
@@ -204,7 +204,7 @@ It will give you a service link on which we can access the APP
 https://cov19-uhdzrcl53a-ew.a.run.app
 ```
 
-Note that `-p 80:5000` was done, whcih is strangely working wihtout any conf cf.
+Note that `-p 80:5000` was done, which is strangely working without any additional conf cf.
 https://cloud.google.com/run/docs/reference/container-contract
 
  
@@ -225,9 +225,9 @@ Address: 216.239.36.53
 `covi.coulombel.site IN CNAME cov19-uhdzrcl53a-ew.a.run.app`
  
  This will not work.
- Because behind ttere is routing based on host HEADER (like OpenShift route or k8s Ingress, umile a Service NodePort/lb)
+ Because behind there is routing based on host HEADER (like OpenShift route or k8s Ingress, unlike a Service NodePort/lb)
 
-For instance if we change the Host header 
+For instance if we change the Host header we have acess to the application.
  
  ```shell script
  $ curl -L  --header "Host: cov19-uhdzrcl53a-ew.a.run.app" http://covi.coulombel.site -v
@@ -236,7 +236,7 @@ For instance if we change the Host header
 
 ##### Mapping custom domain in cloud run 
 
-Actually we have to define a mapping between service and doamain
+Actually we have to define a mapping between service and domain
  <!-- equivalent in OpenShift route when change the route name to match the DNS -->
  
  This is explained here:
@@ -262,7 +262,7 @@ We should not do `covid19 300 IN CNAME ghs.googlehosted.com`
 
 This is great as it enables a CNAME redirection while it keeps the https secure.
  
-<!-- open with firegox to have rights -->
+<!-- open with firefox to have rights -->
 
 
 
