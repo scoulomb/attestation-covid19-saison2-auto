@@ -266,7 +266,7 @@ This is great as it enables a CNAME redirection while it keeps the https secure.
 
 
 
-If we map an appex domain and not a subdomain we have to map A and AAAA not a CNAME.
+If we map an apex domain and not a subdomain we have to map A and AAAA not a CNAME.
 
 ````shell script
 @ 300 IN A 216.239.32.21
@@ -279,20 +279,23 @@ If we map an appex domain and not a subdomain we have to map A and AAAA not a CN
 @ 300 IN AAAA 2001:4860:4802:38::15
 ````
 
-We had seem same issue here: https://github.com/scoulomb/github-page-helm-deployer/blob/master/appendix-github-page-and-dns.md#go
+We had seen same issue here: https://github.com/scoulomb/github-page-helm-deployer/blob/master/appendix-github-page-and-dns.md#go
 It is because we can not have a CNAME as APEX level (zone level).
 
 ```
 @ IN CNAME example.com 
 ```
 
-In Gandi API (with dev console) we can 
+In Gandi API (with dev console) we can see
 
 ```
 description: "can't use '@' for CNAME records (param: {'rrset_type': u'CNAME', 'rrset_ttl': 1800, 'rrset_name': u'@', 'rrset_values': [u'yop.tets.it']})" }
 ```
 
+This is needed for AdSense validation. Otherwise it is not needed.
 
+<!--remove gandi redirection, and record note it was also a A here -->
+<!-- mapping ok but record not working, on chrome/firefox need to clean browser cache: Cookies and Site Data, for negative TTL change in etc resolve dns, wait -->
 <!-- During my test I saw Gandi prevents from having a TXT and CNAME with same name, et autre dans 6 use linux nameserver --> 
 
 #### Update and Continuous Delivery/Deployment
@@ -318,6 +321,3 @@ service :
 
 <!-- remove idea file https://stackoverflow.com/questions/10067848/remove-folder-and-its-contents-from-git-githubs-history -->
 
-squashed old commit
-https://www.ekino.com/articles/comment-squasher-efficacement-ses-commits-avec-git
-have to copy first sha
