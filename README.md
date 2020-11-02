@@ -317,3 +317,7 @@ service :
 
 
 <!-- remove idea file https://stackoverflow.com/questions/10067848/remove-folder-and-its-contents-from-git-githubs-history -->
+
+squashed old commit
+https://www.ekino.com/articles/comment-squasher-efficacement-ses-commits-avec-git
+have to copy first sha
