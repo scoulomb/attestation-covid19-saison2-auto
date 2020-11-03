@@ -11,10 +11,42 @@
     <script data-ad-client="ca-pub-6424603839067899" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
 <body>
-    <h1 id="status"> Download will start :) ! </h1>
+    <h1 id="Welcome"> Générateur d'attestation COVID-19 en un click ! </h1>
+    <h2 id=""why> Service </h2>
+    <!--Generate why from readme: https://markdowntohtml.com/ -->
+    <p>Ce projet permet de générer une attestation de déplacement en &quot;1-click&quot; pour le confinement saison 2 lance en France le vendredi 30 Octobre 2020.
+    En effet la version numérique du gouvernement (<a href="https://media.interieur.gouv.fr/deplacement-covid-19/">https://media.interieur.gouv.fr/deplacement-covid-19/</a>) nécessite</p>
+    <ul>
+      <li>Plus d&#39;un click pour générer une attestation</li>
+      <li>Force a re-renter les informations a chaque utilisation sur certains navigateurs (see <a href="https://gist.github.com/niksumeiko/360164708c3b326bd1c8">autocomplete</a> set to <a href="https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020/blob/a2566e82555c56442dbdc6857c21f0e4c8c5dc39/src/js/form.js#L22">false</a>),</li>
+    </ul>
+    
+    <h2 id="Usage"> Utilisation </h2>  
+    <!--Generate usage from readme: https://markdowntohtml.com/ -->
+    <p>Concu comme un lien a bookmarker sur un dispositif mobile (telephone, tablette, etc), l&#39;ouverture de ce lien declenchera le telechargement d&#39;une nouvelle attestation enrichie des informations fournies dans le lien.</p>
+    <p>Cette exemple de lien (prealablement bookmarke) <a href="https://covid19.coulombel.site/?address=15%20rue%20d%27Antibes&amp;birthday=20/03/1882&amp;city=Antibes&amp;firstname=Rene&amp;minutesoffset=5&amp;lastname=Coty&amp;placeofbirth=Le%20Havre&amp;zipcode=06600&amp;reason=sport_animaux">https://covid19.coulombel.site/?address=15 rue d&#39;Antibes&amp;birthday=20/03/1882&amp;city=Antibes&amp;firstname=Rene&amp;minutesoffset=5&amp;lastname=Coty&amp;placeofbirth=Le Havre&amp;zipcode=06600&amp;reason=sport_animaux</a> generera une attestation avec les informations suivantes:</p>
+    <ul>
+    <li><strong>15 rue d&#39;Antibes</strong> <em>l&#39;addresse de votre habitation</em></li>
+    <li><strong>20/03/1882</strong> <em>la date de votre aniversaire</em></li>
+    <li><strong>Antibes</strong> <em>la ville d&#39;habitation</em></li>
+    <li><strong>Rene</strong> <em>votre prenom</em></li>
+    <li><strong>03/11/2020 a 13H18</strong> <em>la date de sortie generee a partir de l&#39;heure actuelle en ajoutant un offset (positif pour une date future ou negatif pour une date passee)</em></li>
+    <li><strong>Coty</strong> <em>votre nom</em></li>
+    <li><strong>Le Havre</strong> <em>votre lieu de naissance</em></li>
+    <li><strong>06600</strong> <em>votre code postal</em></li>
+    <li><strong>une case cochee</strong> <em>la raison de votre sortie qui selon les choix gouvernementaux pourront etre: travail, achats, sante, famille, handicap, sport_animaux, convocation, missions, enfants</em></li>
+    </ul>
+    <p>Appreciez votre sortie, sortez couvert et respectez les gestes barrières !</p>
+    <p>En général deux bookmarks suffisent car seule la raison change.</p>
+    <p>Je recommende d&#39;utiliser sur Android Firefox qui permet de changer facilement l&#39;URL et d&#39;exporter un lien en application.
+    
+    <h2 id="output"> Generation output </h2>  
+    Ici se trouveront les résultats de la génération 
+    <p id="status"></p>
     <p id="userdata"></p>
-    <p id="help"> </p>
-    <h4 id="errors"></h4>
+    <p id="errors"></p>
+    <h2 id="comtribution"> Contribution </h2> 
+    <p>Code is available on <a href="https://github.com/scoulomb/attestation-covid19-saison2-auto">Github</a> . Pull requests are welcome!</p>
     <script src="./js/main.js"></script>
 </body>
 </html>
