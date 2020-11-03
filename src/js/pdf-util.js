@@ -38,12 +38,12 @@ export async function generatePdf (profile, reasons, pdfBase) {
   } = profile
 
   const data = [
-    `Cree le: ${creationDate} a ${creationHour}`,
+    `Créé le: ${creationDate} à ${creationHour}`,
     `Nom: ${lastname}`,
     `Prenom: ${firstname}`,
-    `Naissance: ${birthday} a ${placeofbirth}`,
+    `Naissance: ${birthday} à ${placeofbirth}`,
     `Adresse: ${address} ${zipcode} ${city}`,
-    `Sortie: ${datesortie} a ${heuresortie}`,
+    `Sortie: ${datesortie} à ${heuresortie}`,
     `Motifs: ${reasons}`,
   ].join(';\n ')
 
@@ -96,8 +96,8 @@ export async function generatePdf (profile, reasons, pdfBase) {
   }
 
   drawText(profile.city, 105, 177, locationSize)
-  drawText(`${profile.datesortie}`, 91, 153, 11)
-  drawText(`${profile.heuresortie}`, 264, 153, 11)
+  drawText(`${profile.datesortie}`, 91, 153)
+  drawText(`${profile.heuresortie}`, 264, 153)
 
   // const shortCreationDate = `${creationDate.split('/')[0]}/${
   //   creationDate.split('/')[1]
@@ -138,7 +138,7 @@ export async function generatePdf (profile, reasons, pdfBase) {
 
   console.log("tggggutu")
   console.log(creationHourO)
-  downloadBlob( new Blob([pdfBytes], { type: 'application/pdf' }), `attestation-stime-${profile.heuresortie}_${creationDateO}_${creationHourO}.pdf`)
+  downloadBlob( new Blob([pdfBytes], { type: 'application/pdf' }), `${creationDateO}-${creationHourO} attestation ${profile.heuresortie}.pdf`)
 }
 
 function getIdealFontSize (font, text, maxWidth, minSize, defaultSize) {

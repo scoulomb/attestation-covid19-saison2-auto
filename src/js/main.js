@@ -2,7 +2,7 @@ import { generatePdf } from './pdf-util'
 import pdfBase from '../certificate.pdf'
 
 console.log("Main")
-var valid_link = "https://covid19.coulombel.site/?address=15 rue d\'Antibes&birthday=20/03/1882&city=Antibes&firstname=Rene&minutesoffset=5&lastname=Coty&placeofbirth=Le Havre&zipcode=06600&reason=sport_animaux" 
+var valid_link = "https://covid-19.bocquet.info/?firstname=Rene&lastname=Coty&birthday=20/03/1882&address=15 rue d\'Antibes&zipcode=06600&city=Antibes&placeofbirth=Le Havre&reason=sport_animaux&minutesoffset=5" 
 
 // https://stackoverflow.com/questions/18239430/cannot-set-property-innerhtml-of-null
 // https://stackoverflow.com/questions/37951999/error-message-innerhtml-is-not-a-function
