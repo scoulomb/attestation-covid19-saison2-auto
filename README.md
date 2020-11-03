@@ -18,22 +18,19 @@ Ce projet est deployé a cet URL sur Google Cloud Platform (cloud run):
 
 ## Usage
 
-Il a ete concu pour bookmarker une URL sur dispositif mobile pour downloader une nouvelle attestation par example:
+Concu comme un lien a bookmarker sur un dispositif mobile (telephone, tablette, etc), l'ouverture de ce lien declenchera le telechargement d'une nouvelle attestation enrichie des informations fournies dans le lien.
 
-Par example: [https://covid19.coulombel.site/?address=15 rue d'Antibes&birthday=20/03/1882&city=Antibes&firstname=Rene&minutesoffset=5&lastname=Coty&placeofbirth=Le Havre&zipcode=06600&reason=sport_animaux](https://covid19.coulombel.site/?address=15%20rue%20d%27Antibes&birthday=20/03/1882&city=Antibes&firstname=Rene&minutesoffset=5&lastname=Coty&placeofbirth=Le%20Havre&zipcode=06600&reason=sport_animaux)
+Cette exemple de lien (prealablement bookmarke) [https://covid19.coulombel.site/?address=15 rue d'Antibes&birthday=20/03/1882&city=Antibes&firstname=Rene&minutesoffset=5&lastname=Coty&placeofbirth=Le Havre&zipcode=06600&reason=sport_animaux](https://covid19.coulombel.site/?address=15%20rue%20d%27Antibes&birthday=20/03/1882&city=Antibes&firstname=Rene&minutesoffset=5&lastname=Coty&placeofbirth=Le%20Havre&zipcode=06600&reason=sport_animaux) generera une attestation avec les informations suivantes:
 
-generera une attestation avec pour
-
-- address=15 rue d'Antibes: Addresse de votre habitation
-- birthday=20/03/1882: Date de votre aniversaire
-- city=Antibes: Ville d'habitation 
-- firstname=Rene: Votre prenom 
-- minutesoffset=60: Date de sortie genere a partir de l'heure actuelle en ajoutant un offset (qui peut etre negatif)
-- lastname=Coty: votre nom
-- placeofbirth=Le Havre: votre lieu de naissaince
-- zipcode=06600: votre code postale
-- reason=sport_animaux: la raison de votre sortie
-Les raisons valides sont: travail, achats, sante, famille, handicap, sport animaux, convocation, missions, enfants
+- **15 rue d'Antibes** *l'addresse de votre habitation*
+- **20/03/1882** *la date de votre aniversaire*
+- **Antibes** *la ville d'habitation*
+- **Rene** *votre prenom*
+- **03/11/2020 a 13H18** *la date de sortie generee a partir de l'heure actuelle en ajoutant un offset (positif pour une date future ou negatif pour une date passee)*
+- **Coty** *votre nom*
+- **Le Havre** *votre lieu de naissance*
+- **06600** *votre code postal*
+- **une case cochee** *la raison de votre sortie qui selon les choix gouvernementaux pourront etre: travail, achats, sante, famille, handicap, sport_animaux, convocation, missions, enfants*
 
 Appreciez votre sortie, sortez couvert et respectez les gestes barrières !
 
