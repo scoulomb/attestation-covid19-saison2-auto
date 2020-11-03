@@ -2,15 +2,11 @@ import { generatePdf } from './pdf-util'
 import pdfBase from '../certificate.pdf'
 
 console.log("Main")
-var valid_link = "https://covid19.coulombel.site/?address=15 rue d\'Antibes&birthday=20/03/1882&city=Antibes&firstname=Rene&minutesoffset=5&lastname=Coty&placeofbirth=Le Havre&zipcode=06600&reason=sport_animaux" 
 
 // https://stackoverflow.com/questions/18239430/cannot-set-property-innerhtml-of-null
 // https://stackoverflow.com/questions/37951999/error-message-innerhtml-is-not-a-function
 var status = document.getElementById('status')
-status.innerHTML = '<p>Started</p>'
 var errors = document.getElementById('errors')
-var help = document.getElementById('help')
-help.innerHTML = "<p>Another example of valid usage to copy/past in your browser <br> <p> <a href=\"" + valid_link + "\">" + valid_link + "</a><br><br> and adapt with your profile. See <a href=\"https://github.com/scoulomb/attestation-covid19-saison2-auto/blob/main/README.md\">Specification</a> for more details </p>"
 var userdata = document.getElementById('userdata') // cal element profile is not working so call it userdata
 
 // https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
@@ -54,15 +50,21 @@ function process() {
        nullKeys.push(key)
     }
   }
-  
-  if (nullKeys.length > 0)
+  // inputMap.size != inputElementKeys.length yo not display error if no input at all was provided which means user accessed to the landing page 
+  // But did not try to submit a request
+  // console.log(inputMap.size)
+  if (inputMap.size === nullKeys.length){
+    return
+  }
+    
+  if (nullKeys.length > 1)
   {
-       help.innerHTML = ""
        status.innerHTML = '<p style="color:#FF0000"; ><b>User errors</b></p>';
        errors.innerHTML =  "<p> Mandatory keys: [" +   nullKeys.join(", ")   + "] are missing. </p> <br>" +
-       "<p> An exampe of valid usage is </p>" +
-       "<p> <a href=\"" +valid_link + "\">" + valid_link +  "</a></p>"
+       "<p> An example of valid usage is provided above in <a href=\"#usage\">usage section</a></p>"
        return;    
+  } else {
+        status.innerHTML = '<p> Que la generation commence :) ! </p>'
   }
 
 
@@ -80,10 +82,11 @@ function process() {
   ]
 
   console.log(inputMap.get("reason"))
+  
   var accepted = accepted_reasons.includes(inputMap.get("reason"));
   if(! accepted) {    
-    status.innerHTML = "<p> Reason not accepted </p>"
-    errors.innerHTML =  "<p> Valid reasons are: " + accepted_reasons.join(", ") + "</p>"
+    status.innerHTML = '<p style="color:#FF0000"; ><b>Raison invalide</b></p>';
+    errors.innerHTML =  "<p> Les raisons valides sont: " + accepted_reasons.join(", ") + "</p>"
     return;
   }
 
@@ -117,8 +120,8 @@ function process() {
   /// Generate pdf
   generatePdf(profile, inputMap.get("reason"), pdfBase)
   // set downloadBlob in generatePdf otheriwse issue with async, it download before generation ended
-  status.innerHTML = '<p>Certificate generation completed</p>'
-  userdata.innerHTML = '<p>Profile used for generation was:' + JSON.stringify(profile)  + '<p>'
+  status.innerHTML = '<p style="color:#008000"; > Attestation disponible dans le dossier download</p>'
+  userdata.innerHTML = '<p>Profile utilise est:' + JSON.stringify(profile)  + 'pour la raison '+ inputMap.get("reason") + '</p>'
 
 }
 
