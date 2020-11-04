@@ -1,7 +1,7 @@
 # Générateur de certificat de déplacement en "1-click"
 
 Try me online:
-[https://covid19.coulombel.site/?address=15 rue d'Antibes&birthday=20/03/1882&city=Antibes&firstname=Rene&minutesoffset=5&lastname=Coty&placeofbirth=Le Havre&zipcode=06600&reason=sport_animaux](https://covid19.coulombel.site/?address=15%20rue%20d%27Antibes&birthday=20/03/1882&city=Antibes&firstname=Rene&minutesoffset=5&lastname=Coty&placeofbirth=Le%20Havre&zipcode=06600&reason=sport_animaux)
+[https://attestationcovid.site/?address=15 rue d'Antibes&birthday=20/03/1882&city=Antibes&firstname=Rene&minutesoffset=5&lastname=Coty&placeofbirth=Le Havre&zipcode=06600&reason=sport_animaux](https://attestationcovid.site/?address=15%20rue%20d%27Antibes&birthday=20/03/1882&city=Antibes&firstname=Rene&minutesoffset=5&lastname=Coty&placeofbirth=Le%20Havre&zipcode=06600&reason=sport_animaux)
 
 ## Purpose
 
@@ -14,13 +14,13 @@ Ce projet a été élabore en partant de la base de code de la version numériqu
 https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020
 
 Ce projet est deployé a cet URL sur Google Cloud Platform (cloud run):
-[https://covid19.coulombel.site/](https://covid19.coulombel.site/)
+[https://attestationcovid.site/](https://attestationcovid.site/)
 
 ## Usage
 
 Concu comme un lien a bookmarker sur un dispositif mobile (telephone, tablette, etc), l'ouverture de ce lien declenchera le telechargement d'une nouvelle attestation enrichie des informations fournies dans le lien.
 
-Cette exemple de lien (prealablement bookmarke) [https://covid19.coulombel.site/?address=15 rue d'Antibes&birthday=20/03/1882&city=Antibes&firstname=Rene&minutesoffset=5&lastname=Coty&placeofbirth=Le Havre&zipcode=06600&reason=sport_animaux](https://covid19.coulombel.site/?address=15%20rue%20d%27Antibes&birthday=20/03/1882&city=Antibes&firstname=Rene&minutesoffset=5&lastname=Coty&placeofbirth=Le%20Havre&zipcode=06600&reason=sport_animaux) generera une attestation avec les informations suivantes:
+Cette exemple de lien (prealablement bookmarke) [https://attestationcovid.site/?address=15 rue d'Antibes&birthday=20/03/1882&city=Antibes&firstname=Rene&minutesoffset=5&lastname=Coty&placeofbirth=Le Havre&zipcode=06600&reason=sport_animaux](https://attestationcovid.site/?address=15%20rue%20d%27Antibes&birthday=20/03/1882&city=Antibes&firstname=Rene&minutesoffset=5&lastname=Coty&placeofbirth=Le%20Havre&zipcode=06600&reason=sport_animaux) generera une attestation avec les informations suivantes:
 
 - **15 rue d'Antibes** *l'addresse de votre habitation*
 - **20/03/1882** *la date de votre aniversaire*
