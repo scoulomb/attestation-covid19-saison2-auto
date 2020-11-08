@@ -111,10 +111,14 @@
               <option value="sport_animaux">Rendez-vous Tinder à moins de 1 km</option>
           </select>
         </div>
-  
-        <input required="true" type="hidden" id="minutesoffset" value="0">
+
+        <div class="form-group">
+            <label for="minutesoffset">Dans combien de minutes souhaitez-vous sortir (la valeur peut être négative) :</label>
+            <input class="form-control" required="true" type="text" id="minutesoffset" name="minutesoffset">
+        </div>
+
         <br>
-        <input type="submit" class="btn btn-info" id="generate-action" value="Générer mon lien personnalisé"  onclick="generateUrl()">
+        <input type="submit" class="btn btn-info" id="generate-action" value="Générer mon lien personnalisé"  onclick="generateUrl();return false">
     </form>
     <br>
     <div id="result"></div>
@@ -122,7 +126,6 @@
   
     <script>
         function generateUrl() {
-            event.preventDefault();
             let arrayParam = [
                 'lastname',
                 'firstname',
