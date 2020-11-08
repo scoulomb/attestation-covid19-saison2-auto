@@ -18,9 +18,7 @@
 </head>
 <body class="container">
     <h1 id="Welcome mb-4"> Générateur d'attestation COVID-19 en un click ! </h1>
-    <h2 id="first-visit"> Première visite ? </h2>
-    <p>Vous pouvez accèder au formulaire pour générer votre lien personnalisé en cliquant ici :</p>
-    <a class="btn btn-info mb-3" href="#link-generator">Générer mon lien</a>
+
     <h2 id="why"> Service </h2>
     <!--Generate why from readme: https://markdowntohtml.com/ -->
     <p>Ce projet permet de générer une attestation de déplacement en &quot;1-click&quot; pour le confinement saison 2 lance en France le vendredi 30 Octobre 2020.
@@ -45,23 +43,27 @@
     <li><strong>06600</strong> <em>votre code postal</em></li>
     <li><strong>une case cochee</strong> <em>la raison de votre sortie qui selon les choix gouvernementaux pourront etre: travail, achats, sante, famille, handicap, sport_animaux, convocation, missions, enfants</em></li>
     </ul>
-    <p>Appreciez votre sortie, sortez couvert et respectez les gestes barrières !</p>
-    <p>En général deux bookmarks suffisent car seule la raison change.</p>
-    <p>Je recommende d&#39;utiliser sur Android Firefox qui permet de changer facilement l&#39;URL et d&#39;exporter un lien en application.
     
-    <h2 id="output"> Generation output </h2>  
-    Ici se trouveront les résultats de la génération 
+    
+    <h2 id="Generation"> Vous pouvez generez votre lien réutilisable avec notre formulaire </h2>  
+    <a class="btn btn-info mb-3" href="#link-generator">Générer mon lien</a>
+    
+    <h2 id="Advise"> Conseils </h2>  
+    
+    <p>Appreciez votre sortie, sortez couvert et respectez les gestes barrières !</p>
+    <p>En général 2,3 bookmarks suffisent car seule la raison change.</p>
+    <p>Je recommende d&#39;utiliser sur Android Firefox qui permet de changer facilement l&#39;URL et d&#39;exporter un lien en <a href="https://support.mozilla.org/en-US/kb/add-web-page-shortcuts-your-home-screen">application</a>.
+    
+    
+    <h2 id="output"> Resultats de la génération </h2>  
+    Ici seront disponible les resultats de la génération 
     <p id="status"></p>
     <p id="userdata"></p>
     <p id="errors"></p>
-    <h2 id="comtribution"> Contribution </h2> 
-    <p>Code is available on <a href="https://github.com/scoulomb/attestation-covid19-saison2-auto">Github</a> . Pull requests are welcome!</p>
-
-    <br>
   
     <h2 id="link-generator"> Générateur de lien </h2> 
     <div>
-        Ce service permet de générer une attestation à partir d'un lien personnalisé, vous pouvez utiliser le formulaire ci-dessous pour générer votre propre lien qui sera réutilisable.
+        Vous pouvez utiliser le formulaire ci-dessous pour générer votre propre lien qui sera réutilisable.
         Lorsque vous irez sur ce lien une nouvelle attestation avec vos coordonnées sera générée avec la date du jour ainsi que l'heure à laquelle vous avez cliqué sur le lien
     </div>
 
@@ -118,14 +120,37 @@
         </div>
 
         <br>
-        <input type="submit" class="btn btn-info" id="generate-action" value="Générer mon lien personnalisé"  onclick="generateUrl();return false">
+        <!-- WARNING we remove "type=submit" otherwise it sends a query with url + name in the form-control as query parameter (you can change 1 to try)
+        If not removed we actually never go through generateUrl function,
+        Which is hard to detect.
+        As  consequence if kept it does not display the URL but opens a new window
+        See https://html.spec.whatwg.org/multipage/input.html#submit-button-state-(type=submit) -->
+        <input id=gen_url_submit class="btn btn-info" value="Générer mon lien personnalisé" >
     </form>
     <br>
-    <div id="result"></div>
+    <div id="gen_url_result"></div>
     <br>
   
     <script>
-        function generateUrl() {
+    
+        function makeParamHelper(paramName) {
+            return paramName+'='+document.getElementById(paramName).value+'&';
+        }
+    
+        function displayUrlHelper(url) {
+            document.getElementById('gen_url_result').innerHTML = '';
+            let textDiv = document.createElement('div');
+            let text = document.createTextNode("Voici le lien qui vous permettra de générer votre attestation à la volée, n'oubliez pas de l'enregistrer dans vos favoris");
+            textDiv.appendChild(text);
+            let a = document.createElement('a');
+            let linkText = document.createTextNode(url);
+            a.appendChild(linkText);
+            a.href = url;
+            document.getElementById('gen_url_result').appendChild(a);
+
+        }
+        // we can also use onClick at button level
+        document.getElementById("gen_url_submit").onclick = function generateUrl() {
             let arrayParam = [
                 'lastname',
                 'firstname',
@@ -137,30 +162,21 @@
                 'minutesoffset',
                 'reason'
             ];
-            let str = 'https://attestationcovid.site/?';
+            let generated_url = 'https://attestationcovid.site/?';
             arrayParam.forEach(function(item) {
-              str = str + generateParam(item);
+              generated_url += makeParamHelper(item);
             });
-            displayUrl(str);
-        }
-    
-        function generateParam(paramName) {
-            return paramName+'='+document.getElementById(paramName).value+'&';
-        }
-    
-        function displayUrl(url) {
-            document.getElementById('result').innerHTML = '';
-            let textDiv = document.createElement('div');
-            let text = document.createTextNode("Voici le lien qui vous permettra de générer votre attestation à la volée, n'oubliez pas de l'enregistrer dans vos favoris");
-            textDiv.appendChild(text);
-            document.getElementById('result').appendChild(textDiv);
-            let a = document.createElement('a');
-            let linkText = document.createTextNode(url);
-            a.appendChild(linkText);
-            a.href = url;
-            document.getElementById('result').appendChild(a);
+            console.log(generated_url)
+            // Slice to not display last &
+            displayUrlHelper(generated_url.slice(0, -1));
+
         }
     </script>    
+    
+    <h2 id="contribution"> Contribution </h2> 
+    <p>Code is available on <a href="https://github.com/scoulomb/attestation-covid19-saison2-auto">Github</a> . Pull requests are welcome!</p>
+
+    <br>
     
     <div id="618834868">
       <script type="text/javascript">
