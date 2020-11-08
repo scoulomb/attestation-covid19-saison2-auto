@@ -13,11 +13,15 @@
         window._mNHandle.queue = window._mNHandle.queue || [];
         medianet_versionId = "3121199";
     </script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <script src="https://contextual.media.net/dmedianet.js?cid=8CUY31688" async="async"></script>
 </head>
-<body>
-    <h1 id="Welcome"> Générateur d'attestation COVID-19 en un click ! </h1>
-    <h2 id=""why> Service </h2>
+<body class="container">
+    <h1 id="Welcome mb-4"> Générateur d'attestation COVID-19 en un click ! </h1>
+    <h2 id="first-visit"> Première visite ? </h2>
+    <p>Vous pouvez accèder au formulaire pour générer votre lien personnalisé en cliquant ici :</p>
+    <a class="btn btn-info mb-3" href="#link-generator">Générer mon lien</a>
+    <h2 id="why"> Service </h2>
     <!--Generate why from readme: https://markdowntohtml.com/ -->
     <p>Ce projet permet de générer une attestation de déplacement en &quot;1-click&quot; pour le confinement saison 2 lance en France le vendredi 30 Octobre 2020.
     En effet la version numérique du gouvernement (<a href="https://media.interieur.gouv.fr/deplacement-covid-19/">https://media.interieur.gouv.fr/deplacement-covid-19/</a>) nécessite</p>
@@ -54,6 +58,104 @@
     <p>Code is available on <a href="https://github.com/scoulomb/attestation-covid19-saison2-auto">Github</a> . Pull requests are welcome!</p>
 
     <br>
+    
+  <div id="link-generator" class="container-fluid">
+      <div>
+          Ce service permet de générer une attestation à partir d'un lien personnalisé, vous pouvez utiliser le formulaire ci-dessous pour générer votre propre lien qui sera réutilisable.
+          Lorsque vous irez sur ce lien une nouvelle attestation avec vos coordonnées sera générée avec la date du jour ainsi que l'heure à laquelle vous avez cliqué sur le lien
+      </div>
+  
+      <form>
+          <div class="form-group">
+              <label for="lastname">Nom :</label>
+              <input class="form-control" required="true" type="text" id="lastname" name="lastname">
+          </div>
+          <div class="form-group">
+              <label for="firstname">Prénom :</label>
+              <input class="form-control" required="true" type="text" id="firstname" name="firstname">
+          </div>
+          <div class="form-group">
+              <label for="address">Adresse :</label>
+              <input class="form-control" required="true" type="text" id="address" name="address">
+          </div>
+          <div class="form-group">
+              <label for="city">Ville :</label>
+              <input class="form-control" required="true" type="text" id="city" name="city">
+          </div>
+          <div class="form-group">
+              <label for="zipcode">Code Postal :</label>
+              <input class="form-control" required="true" type="text" id="zipcode" name="zipcode">
+          </div>
+          <div class="form-group">
+              <label for="birthday">Date de naissance (format DD/MM/YYYY):</label>
+              <input class="form-control" required="true" type="text" id="birthday" name="birthday" placeholder="DD/MM/YYYY">
+          </div>
+          <div class="form-group">
+              <label for="placeofbirth">Lieu de naissance :</label>
+              <input class="form-control" required="true" type="text" id="placeofbirth" name="placeofbirth">
+          </div>
+  
+  
+          <select name="reason" id="reason" class="form-control mb-4">
+              <option value="">-- Choisir la raison de votre sortie --</option>
+              <option value="travail">Aller au travail</option>
+              <option value="achats">Faire les courses</option>
+              <option value="sante">Consultations à des examens médicaux</option>
+              <option value="famille">Familiale </option>
+              <option value="handicap">Personnes en situation de handicap</option>
+              <option value="sport_animaux">Déplacement brefs dans la limite de 1 heure, < 1km, Sport </option>
+              <option value="convocation">Convocation judiciaire ou administrative</option>
+              <option value="missions">Missions d'intérêt général</option>
+              <option value="enfants">Récupérer ses enfants à l'école</option>
+              <option value="sport_animaux">Rendez-vous Tinder à moins de 1 km</option>
+          </select>
+          <input required="true" type="hidden" id="minutesoffset" value="0">
+          <br>
+          <input type="submit" class="btn btn-info" id="generate-action" value="Générer mon lien personnalisé"  onclick="generateUrl()">
+      </form>
+      <br>
+      <div id="result"></div>
+      <br>
+  </div>
+  
+  <script>
+      function generateUrl() {
+          event.preventDefault();
+          let arrayParam = [
+              'lastname',
+              'firstname',
+              'address',
+              'city',
+              'zipcode',
+              'birthday',
+              'placeofbirth',
+              'minutesoffset',
+              'reason'
+          ];
+          let str = 'https://attestationcovid.site/?';
+          arrayParam.forEach(function(item) {
+            str = str + generateParam(item);
+          });
+          displayUrl(str);
+      }
+  
+      function generateParam(paramName) {
+          return paramName+'='+document.getElementById(paramName).value+'&';
+      }
+  
+      function displayUrl(url) {
+          document.getElementById('result').innerHTML = '';
+          let textDiv = document.createElement('div');
+          let text = document.createTextNode("Voici le lien qui vous permettra de générer votre attestation à la volée, n'oubliez pas de l'enregistrer dans vos favoris");
+          textDiv.appendChild(text);
+          document.getElementById('result').appendChild(textDiv);
+          let a = document.createElement('a');
+          let linkText = document.createTextNode(url);
+          a.appendChild(linkText);
+          a.href = url;
+          document.getElementById('result').appendChild(a);
+      }
+  </script>    
     
     <div id="618834868">
       <script type="text/javascript">
