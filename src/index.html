@@ -95,20 +95,23 @@
               <input class="form-control" required="true" type="text" id="placeofbirth" name="placeofbirth">
           </div>
   
-  
-          <select name="reason" id="reason" class="form-control mb-4">
-              <option value="">-- Choisir la raison de votre sortie --</option>
-              <option value="travail">Aller au travail</option>
-              <option value="achats">Faire les courses</option>
-              <option value="sante">Consultations à des examens médicaux</option>
-              <option value="famille">Familiale </option>
-              <option value="handicap">Personnes en situation de handicap</option>
-              <option value="sport_animaux">Déplacement brefs dans la limite de 1 heure, < 1km, Sport </option>
-              <option value="convocation">Convocation judiciaire ou administrative</option>
-              <option value="missions">Missions d'intérêt général</option>
-              <option value="enfants">Récupérer ses enfants à l'école</option>
-              <option value="sport_animaux">Rendez-vous Tinder à moins de 1 km</option>
-          </select>
+          <div class="form-group">
+            <label for="reason">Raison de votre sortie :</label>
+            <select name="reason" id="reason" class="form-control mb-4">
+                <option value="">-- Choisir la raison de votre sortie --</option>
+                <option value="travail">Aller au travail</option>
+                <option value="achats">Faire les courses</option>
+                <option value="sante">Consultations à des examens médicaux</option>
+                <option value="famille">Familiale </option>
+                <option value="handicap">Personnes en situation de handicap</option>
+                <option value="sport_animaux">Déplacement brefs dans la limite de 1 heure, < 1km, Sport </option>
+                <option value="convocation">Convocation judiciaire ou administrative</option>
+                <option value="missions">Missions d'intérêt général</option>
+                <option value="enfants">Récupérer ses enfants à l'école</option>
+                <option value="sport_animaux">Rendez-vous Tinder à moins de 1 km</option>
+            </select>
+          </div>
+    
           <input required="true" type="hidden" id="minutesoffset" value="0">
           <br>
           <input type="submit" class="btn btn-info" id="generate-action" value="Générer mon lien personnalisé"  onclick="generateUrl()">
